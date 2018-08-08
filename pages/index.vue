@@ -5,25 +5,25 @@ div
       @enter-cancelled="afterEnter",
       appear)
     card(v-for="(content, idx) in contents", :content="content", :key="content.key", :data-index="idx", @open-card="openCard")
-  transition
-    h1(v-if="contents.length == 0", class="last-text") Congratulations!!!!
-  <link href="https://fonts.googleapis.com/css?family=Homemade+Apple" rel="stylesheet">
+  congratulations(:show="contents.length == 0")
 </template>
 
 
-<script>
-import Vue from 'vue';
+<script> import Vue from 'vue';
 import _ from 'lodash';
 import Card from './../components/Card.vue';
+import Congratulations from './../components/Congratulations.vue';
 
 // var marks = ["♠", "♥", "♣", "◆"];
-// var marks = ["♠", "♥"];
-var marks = [];
-var numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+var marks = ["♠", "♥"];
+// var marks = [];
+// var numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+var numbers = [1, 1];
 
 export default {
   components: {
     Card,
+    Congratulations,
   },
   data: function(){
     return {
@@ -88,11 +88,6 @@ export default {
 </script>
 
 <style lang="sass">
-.last-text
-  text-align: center;
-  font-size: 5em;
-  font-family: 'Homemade Apple', cursive; 
-
 .card-list-enter-active, .card-list-leave-active
   transition: transform 1s, opacity 1s, filter 1s;
 .card-list-move:not(.card-list-leave-active)
