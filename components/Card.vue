@@ -1,12 +1,12 @@
 <template lang="pug">
-div
-  transition(name="rotate", mode="out-in")
-    .card(@click="orientation = !orientation", v-if="orientation", key="table")
+div.card-wrapper
+  transition(name="rotate", mode="out-in", @after-appear="showBack", @appear-cancelled="showBack", @after-enter="sendKey")
+    .card(v-if="content.show", key="table")
       .card-front(:style="{'color': (content.mark == '♠' || content.mark == '♣' ? 'black' : 'red')}")
         span {{content.number}}{{content.mark}}
         | {{content.mark}}
         span {{content.number}}{{content.mark}}
-    .card(@click="orientation = !orientation", v-else, key="back")
+    .card(@click="openCard", v-else, key="back")
       .card-back
 </template>
 
@@ -16,13 +16,32 @@ export default {
   props: ["content"],
   data: function(){
     return {
-      orientation: false,
+      orientation: true,
+      send: false,
+    }
+  },
+  methods: {
+    showBack() {
+      this.orientation = false;
+    },
+    openCard() {
+      this.content.show = !this.content.show;
+      this.send = true;
+    },
+    sendKey() {
+      if(this.send) {
+        this.$emit('open-card', this.content.key);
+        this.send = false;
+      }
     }
   }
 }
 </script>
 
 <style lang="sass">
+.card-wrapper
+  display: inline-block;
+
 .card 
   display: inline-block;
   width: 176px;
