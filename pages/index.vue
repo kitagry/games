@@ -12,7 +12,8 @@ import Vue from 'vue';
 import _ from 'lodash';
 import Card from './../components/Card.vue';
 
-var marks = ["♠", "♥", "♣", "◆"];
+// var marks = ["♠", "♥", "♣", "◆"];
+var marks = ["♠", "♥"];
 var numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 export default {
@@ -72,8 +73,8 @@ export default {
     }
   },
   created() {
-    for(var i = 0; i < marks.length; i++) {
-      for(var j = 0; j < numbers.length; j++) {
+    for(var j = 0; j < numbers.length; j++) {
+      for(var i = 0; i < marks.length; i++) {
         this.contents.push({"mark": marks[i], "number": numbers[j], "key": marks[i]+numbers[j], "show": true});
       }
     }
