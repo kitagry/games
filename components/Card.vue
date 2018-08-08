@@ -1,10 +1,13 @@
 <template lang="pug">
-.card(@click="orientation = !orientation")
-  .card-front
-    span 7♣
-    | ♣
-    span 7♣
-  .card-back(v-show="orientation")
+div
+  transition(name="rotate", mode="out-in")
+    .card(@click="orientation = !orientation", v-if="orientation", key="table")
+      .card-front
+        span 7♣
+        | ♣
+        span 7♣
+    .card(@click="orientation = !orientation", v-else, key="back")
+      .card-back
 </template>
 
 
@@ -52,4 +55,12 @@ export default {
       transform: rotate(180deg);
   .card-back
     background: #36c;
+
+.rotate-enter, .rotate-leave-to
+  transition-duration: 0.5s;
+  transform: rotateY(90deg);
+.rotate-enter-to, .rotate-leave
+  transition-duration: 0.5s;
+  transform: rotateY(0deg);
+
 </style>
