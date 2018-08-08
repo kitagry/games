@@ -52,7 +52,7 @@ export default {
     position: absolute;
     width: 160px;
     height: 230px;
-    font-size: 2em;
+    font-size: 3em;
     text-align: center;
     line-height: 230px;
     color: #000;
