@@ -17,8 +17,8 @@ import Congratulations from './../components/Congratulations.vue';
 // var marks = ["♠", "♥", "♣", "◆"];
 var marks = ["♠", "♥"];
 // var marks = [];
-// var numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-var numbers = [1, 1];
+var numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+// var numbers = [1, 1];
 
 export default {
   components: {
