@@ -2,10 +2,10 @@
 div
   transition(name="rotate", mode="out-in")
     .card(@click="orientation = !orientation", v-if="orientation", key="table")
-      .card-front
-        span 7♣
-        | ♣
-        span 7♣
+      .card-front(:style="{'color': (content.mark == '♠' || content.mark == '♣' ? 'black' : 'red')}")
+        span {{content.number}}{{content.mark}}
+        | {{content.mark}}
+        span {{content.number}}{{content.mark}}
     .card(@click="orientation = !orientation", v-else, key="back")
       .card-back
 </template>
@@ -13,6 +13,7 @@ div
 
 <script>
 export default {
+  props: ["content"],
   data: function(){
     return {
       orientation: false,
