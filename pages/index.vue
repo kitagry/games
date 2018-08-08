@@ -1,9 +1,13 @@
 <template lang="pug">
-transition-group(tag="div", name="card-list", @before-enter="beforeEnter",
-    @after-enter="afterEnter",
-    @enter-cancelled="afterEnter",
-    appear)
-  card(v-for="(content, idx) in contents", :content="content", :key="content.key", :data-index="idx", @open-card="openCard")
+div
+  transition-group(tag="div", name="card-list", @before-enter="beforeEnter",
+      @after-enter="afterEnter",
+      @enter-cancelled="afterEnter",
+      appear)
+    card(v-for="(content, idx) in contents", :content="content", :key="content.key", :data-index="idx", @open-card="openCard")
+  transition
+    h1(v-if="contents.length == 0", class="last-text") Congratulations!!!!
+  <link href="https://fonts.googleapis.com/css?family=Homemade+Apple" rel="stylesheet">
 </template>
 
 
@@ -13,7 +17,8 @@ import _ from 'lodash';
 import Card from './../components/Card.vue';
 
 // var marks = ["♠", "♥", "♣", "◆"];
-var marks = ["♠", "♥"];
+// var marks = ["♠", "♥"];
+var marks = [];
 var numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 export default {
@@ -83,6 +88,11 @@ export default {
 </script>
 
 <style lang="sass">
+.last-text
+  text-align: center;
+  font-size: 5em;
+  font-family: 'Homemade Apple', cursive; 
+
 .card-list-enter-active, .card-list-leave-active
   transition: transform 1s, opacity 1s, filter 1s;
 .card-list-move:not(.card-list-leave-active)
